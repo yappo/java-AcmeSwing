@@ -67,14 +67,16 @@ public class AcmeSwing {
 	}
 	
 	private final String generateText (IAcmeSwingMessage impl) {
-		if (nextStatus == STATUS_START) {
-			return impl.startText();
-		} else if (nextStatus == STATUS_UP) {
-			return impl.swingUpText();
-		} else if (nextStatus == STATUS_DOWN) {
-			return impl.swingDownText();
+		switch (nextStatus) {
+			case STATUS_START:
+				return impl.startText();
+			case STATUS_UP:
+				return impl.swingUpText();
+			case STATUS_DOWN:
+				return impl.swingDownText();
+			default:
+				return "";
 		}
-		return "";
 	}
 
 	/**
