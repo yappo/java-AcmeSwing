@@ -9,11 +9,9 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class AcmeSwing {
-	private final static int STATUS_START = 0;
-	private final static int STATUS_DOWN  = 1;
-	private final static int STATUS_UP    = 2;
+	enum swingStatus { START, DOWN, UP };
+	private swingStatus nextStatus = swingStatus.START;
 
-	private int nextStatus     = STATUS_START;
 	private String message = "";
 	private final ArrayList<String> textStack            = new ArrayList<String>();
 	private final ArrayList<IAcmeSwingMessage> implStack = new ArrayList<IAcmeSwingMessage>();
@@ -48,7 +46,7 @@ public class AcmeSwing {
 	 * @return swing object
 	 */
 	public final AcmeSwing clear() {
-		nextStatus  = STATUS_START;
+		nextStatus  = swingStatus.START;
 		message = "";
 		textStack.clear();
 		implStack.clear();
@@ -68,11 +66,11 @@ public class AcmeSwing {
 	
 	private final String generateText (IAcmeSwingMessage impl) {
 		switch (nextStatus) {
-			case STATUS_START:
+			case START:
 				return impl.startText();
-			case STATUS_UP:
+			case UP:
 				return impl.swingUpText();
-			case STATUS_DOWN:
+			case DOWN:
 				return impl.swingDownText();
 			default:
 				return "";
@@ -118,18 +116,18 @@ public class AcmeSwing {
 	}
 
 	private final AcmeSwing generate(IAcmeSwingMessage impl, String messageText) {
-		if (nextStatus == STATUS_START) {
+		if (nextStatus == swingStatus.START) {
 			message += impl.startAA(messageText);
-			nextStatus = STATUS_DOWN;
-		} else if (nextStatus == STATUS_DOWN) {
+			nextStatus = swingStatus.DOWN;
+		} else if (nextStatus == swingStatus.DOWN) {
 			if (textStack.size() == 1) {
 				message = implStack.get(0).swingUpAA(textStack.get(0));
 			}
 			message += impl.swingDownAA(messageText);
-			nextStatus = STATUS_UP;
-		} else if (nextStatus == STATUS_UP) {
+			nextStatus = swingStatus.UP;
+		} else if (nextStatus == swingStatus.UP) {
 			message += impl.swingUpAA(messageText);
-			nextStatus = STATUS_DOWN;
+			nextStatus = swingStatus.DOWN;
 		}
 		
 		textStack.add(messageText);		
