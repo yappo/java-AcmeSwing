@@ -116,18 +116,24 @@ public class AcmeSwing {
 	}
 
 	private final AcmeSwing generate(IAcmeSwingMessage impl, String messageText) {
-		if (nextStatus == swingStatus.START) {
-			message += impl.startAA(messageText);
-			nextStatus = swingStatus.DOWN;
-		} else if (nextStatus == swingStatus.DOWN) {
-			if (textStack.size() == 1) {
-				message = implStack.get(0).swingUpAA(textStack.get(0));
-			}
-			message += impl.swingDownAA(messageText);
-			nextStatus = swingStatus.UP;
-		} else if (nextStatus == swingStatus.UP) {
-			message += impl.swingUpAA(messageText);
-			nextStatus = swingStatus.DOWN;
+		switch (nextStatus) {
+			case START:
+				message += impl.startAA(messageText);
+				nextStatus = swingStatus.DOWN;
+				break;
+			case DOWN:
+				if (textStack.size() == 1) {
+					message = implStack.get(0).swingUpAA(textStack.get(0));
+				}
+				message += impl.swingDownAA(messageText);
+				nextStatus = swingStatus.UP;
+				break;
+			case UP:
+				message += impl.swingUpAA(messageText);
+				nextStatus = swingStatus.DOWN;
+				break;
+			default:
+				break;
 		}
 		
 		textStack.add(messageText);		
