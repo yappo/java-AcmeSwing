@@ -14,10 +14,10 @@ public class AcmeSwing {
 
 	private String message = "";
 	private final ArrayList<String> textStack            = new ArrayList<String>();
-	private final ArrayList<IAcmeSwingMessage> implStack = new ArrayList<IAcmeSwingMessage>();
+	private final ArrayList<AcmeSwingMessage> implStack = new ArrayList<AcmeSwingMessage>();
 
-	IAcmeSwingMessage smallImpl;
-	IAcmeSwingMessage largeImpl;
+	AcmeSwingMessage smallImpl;
+	AcmeSwingMessage largeImpl;
 	
 	/**
 	 * create instance.
@@ -34,7 +34,7 @@ public class AcmeSwing {
 	 * @param small small ASCII Art object
 	 * @param large large ASCII Art object
 	 */
-	public AcmeSwing(IAcmeSwingMessage small, IAcmeSwingMessage large) {
+	public AcmeSwing(AcmeSwingMessage small, AcmeSwingMessage large) {
 		smallImpl = small;
 		largeImpl = large;
 		clear();
@@ -64,7 +64,7 @@ public class AcmeSwing {
 		
 	}
 	
-	private final String generateText (IAcmeSwingMessage impl) {
+	private final String generateText (AcmeSwingMessage impl) {
 		switch (nextStatus) {
 			case START:
 				return impl.startText();
@@ -115,7 +115,7 @@ public class AcmeSwing {
 		return generate(largeImpl, messageText);
 	}
 
-	private final AcmeSwing generate(IAcmeSwingMessage impl, String messageText) {
+	private final AcmeSwing generate(AcmeSwingMessage impl, String messageText) {
 		switch (nextStatus) {
 			case START:
 				message += impl.startAA(messageText);
@@ -142,7 +142,7 @@ public class AcmeSwing {
 	}
 }
 
-class AcmeSwingMessageSmallImpl implements IAcmeSwingMessage { 
+class AcmeSwingMessageSmallImpl implements AcmeSwingMessage {
 	public String startText() {
 		return "Swing!Swing!";
 	}
@@ -172,7 +172,7 @@ class AcmeSwingMessageSmallImpl implements IAcmeSwingMessage {
 	}
 }
 
-class AcmeSwingMessageLargeImpl extends AcmeSwingMessageSmallImpl { 
+class AcmeSwingMessageLargeImpl extends AcmeSwingMessageSmallImpl {
 	public String startAA(String messageText) {
 		return 	"　　　 _ 　∩\n" +
 				"　　(　゜∀゜)彡　" + messageText + "\n" +

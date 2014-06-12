@@ -7,7 +7,7 @@ package jp.yappo.acme;
  * @version 1.0
  */
 
-public interface IAcmeSwingMessage {
+public interface AcmeSwingMessage {
 	/**
 	 * message text for start.
 	 * 

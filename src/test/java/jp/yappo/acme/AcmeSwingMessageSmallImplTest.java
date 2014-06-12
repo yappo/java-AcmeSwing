@@ -2,7 +2,7 @@ package jp.yappo.acme;
 
 import static org.junit.Assert.*;
 import jp.yappo.acme.AcmeSwing;
-import jp.yappo.acme.IAcmeSwingMessage;
+import jp.yappo.acme.AcmeSwingMessage;
 
 import org.junit.Test;
 
@@ -34,7 +34,7 @@ public class AcmeSwingMessageSmallImplTest {
 
 }
 
-class AcmeSwingMessageTestImpl implements IAcmeSwingMessage { 
+class AcmeSwingMessageTestImpl implements AcmeSwingMessage {
 	public String startText() {
 		return "startText";
 	}
