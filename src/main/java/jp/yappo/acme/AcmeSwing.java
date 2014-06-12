@@ -13,7 +13,7 @@ public class AcmeSwing {
 	private swingStatus nextStatus = swingStatus.START;
 
 	private String message = "";
-	private final ArrayList<String> textStack            = new ArrayList<String>();
+	private final ArrayList<String> textStack           = new ArrayList<String>();
 	private final ArrayList<AcmeSwingMessage> implStack = new ArrayList<AcmeSwingMessage>();
 
 	AcmeSwingMessage smallImpl;
