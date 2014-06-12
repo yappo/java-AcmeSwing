@@ -61,7 +61,7 @@ public class AcmeSwing {
 	 * @return ASCII Art
 	 */
 	@Override
-	public String toString() {
+	public final String toString() {
 		return message;
 		
 	}
@@ -82,7 +82,7 @@ public class AcmeSwing {
 	 * 
 	 * @return swing object
 	 */
-	public AcmeSwing swing() {
+	public final AcmeSwing swing() {
 		return generate(smallImpl, generateText(smallImpl));
 	}
 
@@ -92,7 +92,7 @@ public class AcmeSwing {
 	 * @param messageText message text
 	 * @return swing object
 	 */
-	public AcmeSwing swing(String messageText) {
+	public final AcmeSwing swing(String messageText) {
 		return generate(smallImpl, messageText);
 	}
 
@@ -101,7 +101,7 @@ public class AcmeSwing {
 	 * 
 	 * @return swing object
 	 */
-	public AcmeSwing Swing() {
+	public final AcmeSwing Swing() {
 		return generate(largeImpl, generateText(largeImpl));
 	}
 
@@ -111,7 +111,7 @@ public class AcmeSwing {
 	 * @param messageText message text
 	 * @return swing object
 	 */
-	public AcmeSwing Swing(String messageText) {
+	public final AcmeSwing Swing(String messageText) {
 		return generate(largeImpl, messageText);
 	}
 
